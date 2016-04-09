@@ -30,7 +30,7 @@
     "karma-phantomjs-launcher": "*",
     "lazypipe": "^0.2.4",
     "method-override": "~2.0.2",
-    "mongoose": "~3.8.0",
+    "mongoose": "^3.8.23",
     "open": "0.0.5",
     "requirejs": "^2.2.0",
     "rimraf": "^2.4.0",
