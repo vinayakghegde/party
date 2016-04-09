@@ -1,0 +1,52 @@
+<form>
+<div class="row form-container">
+    <div class="row">
+    <div class="col-md-12">
+    <span>Hi, Please order Pizza and Cold drink that you like !!</span>
+    </div></div>
+    
+     <div class="row">
+    <div class="col-md-5">
+    <label for="sel-pizza">
+        Select Pizza
+    </label>
+    </div>
+    <div class="col-md-7">
+    <select id="sel-pizza" ng-model="pizza" required>
+        <option value="">None</option>
+        <option value="veg1">VEG1</option>
+        <option value="nonveg">NONVEG1</option>
+        <option value="veg2">VEG2</option>
+        <option value="veg3">VEG3</option>
+        <option value="veg4">VEG4</option>
+        <option value="veg5">VEG5</option>
+    </select>
+    </div>   </div>
+    
+       <div class="row">
+      <div class="col-md-5">
+    <label for="sel-cold">
+        Select Cold drink
+    </label>
+    </div>
+    <div class="col-md-7">
+    <select id="sel-cold"" ng-model="cold" required>
+         <option value="">None</option>
+        <option value="coke">Coke</option>
+        <option value="pespi">Pepsi</option>
+        <option value="seven-up">Seven-up</option>
+        <option value="sprite">Sprite</option>        
+    </select>
+    </div> </div>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <input type="submit" value="Place Order" class="btn btn-success" ng-click="onPlaceOrder()"/>
+        </div>
+        <div class="col-md-6">
+            <input type="button" value="Reset" class="btn btn-cancel" ng-click="onReset()"/>
+        </div>
+        </div>
+        
+</div>
+</form>

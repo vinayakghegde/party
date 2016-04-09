@@ -1,0 +1,68 @@
+<div class="row form-container">
+    
+    <div class="row">
+    <div class="col-md-4">
+    <span>you have ordered</span>
+    </div>
+    <div class="col-md-4">
+    <span>Pizza : {{pizza}}</span>
+    </div>
+    
+    <div class="col-md-4">
+    <span>Cold drinks : {{cold}}</span>
+    </div>
+    </div>
+    
+    <div class="row">
+    <div class="col-md-12">
+    <span>Hi, Please change the order Pizza and Cold drink that you want !!</span>
+    </div></div>
+    
+    
+</div>
+
+<form>
+<div class="row form-container">
+    
+     <div class="row">
+    <div class="col-md-5">
+    <label for="sel-pizza">
+        Select Pizza
+    </label>
+    </div>
+    <div class="col-md-7">
+    <select id="sel-pizza" ng-model="pizza" required ng-selected="{{pizza}}">
+        <option value="">None</option>
+        <option value="veg1">VEG1</option>
+        <option value="nonveg">NONVEG1</option>
+        <option value="veg2">VEG2</option>
+        <option value="veg3">VEG3</option>
+        <option value="veg4">VEG4</option>
+        <option value="veg5">VEG5</option>
+    </select>
+    </div>   </div>
+    
+       <div class="row">
+      <div class="col-md-5">
+    <label for="sel-cold">
+        Select Cold drink
+    </label>
+    </div>
+    <div class="col-md-7">
+    <select id="sel-cold"" ng-model="cold" required ng-selected="{{cold}}">
+         <option value="">None</option>
+        <option value="coke">Coke</option>
+        <option value="pespi">Pepsi</option>
+        <option value="seven-up">Seven-up</option>
+        <option value="sprite">Sprite</option>        
+    </select>
+    </div> </div>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <input type="submit" value="change Order" class="btn btn-success" ng-click="onChangeOrder()"/>
+        </div>        
+        </div>
+        
+</div>
+</form>
