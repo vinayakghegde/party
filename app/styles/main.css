@@ -11,9 +11,22 @@
 }
 
 body {
-  background-image: url("../images/pizza.png");
-  padding: 0;
+    animation-name: example;
+    animation-duration: 20s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate; 
+    animation-delay: 2s;  
+    padding: 0;
 }
+
+/* The animation code */
+@keyframes example {
+    0%   {background-image: url("../images/pizza.png");}
+    40%  {background-image: url("../images/pizza.jpg");}
+    50%  {background-image: url("../images/coke.jpg");}
+    100% {background-image: url("../images/pizza.png");}
+}
+
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
@@ -94,4 +107,12 @@ body {
 .form-container > div{
     padding:20px;
     margin:10px;
+}
+
+select .veg{
+   color: #008000;
+}
+
+select .non-veg{
+    color: #ff0000;
 }
