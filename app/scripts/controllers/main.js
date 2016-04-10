@@ -3,11 +3,27 @@
 var tdmApp;
 (function (tdmApp) {
     var MainCtrl = (function () {
-        function MainCtrl($scope) {
+        function MainCtrl($scope, $http, $location) {
             this.$scope = $scope;
+            this.$http = $http;
+            this.$location = $location;
+            $http.get("/api/products").then(function (response) {
+                $scope.myOrder = response.data;
+                if ($scope.myOrder) {
+                    $location.path('/confirmation');
+                }
+            });
             $scope.onPlaceOrder = function () {
-                console.log($scope.pizza);
-                console.log($scope.cold);
+                if ($scope.pizza && $scope.cold) {
+                    $http.post("/api/products", {
+                        pizza: $scope.pizza,
+                        cold: $scope.cold,
+                        name: $scope.name,
+                        id: $scope.id
+                    }, { headers: { 'Content-Type': 'application/json; charset=utf-8' } }).success(function (res) {
+                    }).error(function () {
+                    });
+                }
             };
             $scope.onReset = function () {
                 $scope.pizza = "";
@@ -17,22 +33,64 @@ var tdmApp;
         return MainCtrl;
     }());
     tdmApp.MainCtrl = MainCtrl;
+    var AllOrderCtrl = (function () {
+        function AllOrderCtrl($scope, $http) {
+            this.$scope = $scope;
+            this.$http = $http;
+            $http.get("/api/products").then(function (response) {
+                $scope.order = response.data;
+            });
+        }
+        return AllOrderCtrl;
+    }());
+    tdmApp.AllOrderCtrl = AllOrderCtrl;
+    var ChangeOrderCtrl = (function () {
+        function ChangeOrderCtrl($scope, $http) {
+            this.$scope = $scope;
+            this.$http = $http;
+            $http.get("/api/products").then(function (response) {
+                // TODO: change this
+                $scope.pizza = response.data[0].pizza;
+                $scope.cold = response.data[0].cold;
+            });
+            $scope.onChangeOrder = function () {
+                if ($scope.pizza && $scope.cold) {
+                    $http.post("/api/products", {
+                        pizza: $scope.pizza,
+                        cold: $scope.cold,
+                        name: $scope.name,
+                        id: $scope.id
+                    }, { headers: { 'Content-Type': 'application/json; charset=utf-8' } }).success(function (res) {
+                    }).error(function () {
+                    });
+                }
+            };
+        }
+        return ChangeOrderCtrl;
+    }());
+    tdmApp.ChangeOrderCtrl = ChangeOrderCtrl;
 })(tdmApp || (tdmApp = {}));
 var partyApp = angular.module('tdmApp', ["ngRoute"])
     .controller('MainCtrl', tdmApp.MainCtrl);
+partyApp.controller('allOrderCtrl', tdmApp.AllOrderCtrl);
+partyApp.controller('changeOrderCtrl', tdmApp.ChangeOrderCtrl);
 partyApp.config(['$routeProvider',
     function ($routeProvider) {
         $routeProvider.
             when('/all-orders', {
             templateUrl: '../../views/all-orders.html',
-            controller: 'MainCtrl'
+            controller: 'allOrderCtrl'
         }).
             when('/change-order', {
             templateUrl: '../../views/change-order.html',
-            controller: 'MainCtrl'
+            controller: 'changeOrderCtrl'
         }).
             when('/order-now', {
             templateUrl: '../../views/main.html',
+            controller: 'MainCtrl'
+        }).
+            when('/confirmation', {
+            templateUrl: '../../views/confirmation.html',
             controller: 'MainCtrl'
         }).
             otherwise({

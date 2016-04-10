@@ -5,9 +5,10 @@ var mongoose = restful.mongoose;
 
 // Schema
 var productSchema = new mongoose.Schema({
-    name: String,
-    sku: String,
-    price: Number
+   pizza: String,
+   cold: String,
+   name: String,
+   id: String
 });
 
 // Return model

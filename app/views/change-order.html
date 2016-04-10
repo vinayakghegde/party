@@ -23,7 +23,7 @@
 
 <form>
 <div class="row form-container">
-    
+        
      <div class="row">
     <div class="col-md-5">
     <label for="sel-pizza">
@@ -31,14 +31,49 @@
     </label>
     </div>
     <div class="col-md-7">
-    <select id="sel-pizza" ng-model="pizza" required ng-selected="{{pizza}}">
+    <select id="sel-pizza" ng-model="pizza" required>
         <option value="">None</option>
-        <option value="veg1">VEG1</option>
-        <option value="nonveg">NONVEG1</option>
-        <option value="veg2">VEG2</option>
-        <option value="veg3">VEG3</option>
-        <option value="veg4">VEG4</option>
-        <option value="veg5">VEG5</option>
+        <optgroup class="veg" label="SIMPLY VEG">
+            <option value="Margherita">Margherita</option>
+        </optgroup>
+        <optgroup class="veg" label="VEG TREAT">
+            <option value="Double Cheese Margherita">Double Cheese Margherita</option>
+            <option value="Farm House">Farm House</option>
+            <option value="Country Special">Country Special</option>
+            <option value="Spicy Triple Tango">Spicy Triple Tango</option>
+        </optgroup>
+        
+        <optgroup class="veg" label="VEG SPECIAL">
+            <option value="Peppy Paneer">Peppy Paneer</option>
+            <option value="Mexican Green Wave">Mexican Green Wave</option>
+            <option value="Deluxe Veggie5">Deluxe Veggie5</option>
+            <option value="PepperVeggie Paradise">PepperVeggie Paradise</option>
+        </optgroup>
+
+        <optgroup class="veg" label="EXOTIC ITALIAN VEG">
+            <option value="Roman Veg Supreme">Roman Veg Supreme</option> 
+        </optgroup>
+        
+        <optgroup class="non-veg" label="SIMPLY NON VEG">
+            <option value="Cheese Barbeque Chicken">Cheese & Barbeque Chicken</option>
+            <option value="Chicken Salami">Chicken Salami</option>
+        </optgroup>
+        <optgroup class="non-veg" label="NON VEG TREAT">
+            <option value="Barbeque Chicken">Barbeque Chicken</option>
+            <option value="Spicy Chicken">Spicy Chicken</option>
+            <option value="Chicken Fiesta">Chicken Fiesta</option>           
+        </optgroup>
+        
+        <optgroup class="non-veg" label="NON VEG SPECIAL">
+            <option value="Chicken Mexicana">Chicken Mexicana</option>
+            <option value="Chicken Golden ">Chicken Golden </option>
+            <option value="DelightChicken">DelightChicken</option>
+            <option value=" LoversChef's Chicken Choice"> LoversChef's Chicken Choice</option>
+        </optgroup>
+
+        <optgroup class="non-veg" label="EXOTIC ITALIAN">
+            <option value="Roman Veg Supreme">Florence Chicken Exotica</option> 
+        </optgroup>
     </select>
     </div>   </div>
     
@@ -49,7 +84,7 @@
     </label>
     </div>
     <div class="col-md-7">
-    <select id="sel-cold"" ng-model="cold" required ng-selected="{{cold}}">
+    <select id="sel-cold"" ng-model="cold" required>
          <option value="">None</option>
         <option value="coke">Coke</option>
         <option value="pespi">Pepsi</option>
@@ -60,8 +95,9 @@
     
     <div class="row">
         <div class="col-md-6">
-            <input type="submit" value="change Order" class="btn btn-success" ng-click="onChangeOrder()"/>
-        </div>        
+            <input type="submit" value="Change Order" class="btn btn-success" ng-click="onChangeOrder()"/>
+        </div>
+       
         </div>
         
 </div>
