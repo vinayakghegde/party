@@ -45,9 +45,10 @@ var tdmApp;
     }());
     tdmApp.AllOrderCtrl = AllOrderCtrl;
     var ChangeOrderCtrl = (function () {
-        function ChangeOrderCtrl($scope, $http) {
+        function ChangeOrderCtrl($scope, $http, $location) {
             this.$scope = $scope;
             this.$http = $http;
+            this.$location = $location;
             $http.get("/api/products").then(function (response) {
                 // TODO: change this
                 $scope.pizza = response.data[0].pizza;
@@ -61,7 +62,9 @@ var tdmApp;
                         name: $scope.name,
                         id: $scope.id
                     }, { headers: { 'Content-Type': 'application/json; charset=utf-8' } }).success(function (res) {
+                        $location.path('/confirmation');
                     }).error(function () {
+                        $location.path('/error');
                     });
                 }
             };
@@ -91,6 +94,10 @@ partyApp.config(['$routeProvider',
         }).
             when('/confirmation', {
             templateUrl: '../../views/confirmation.html',
+            controller: 'MainCtrl'
+        }).
+            when('/error', {
+            templateUrl: '../../views/error.html',
             controller: 'MainCtrl'
         }).
             otherwise({

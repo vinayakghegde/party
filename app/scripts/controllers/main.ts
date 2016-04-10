@@ -67,7 +67,7 @@ module tdmApp {
   }
   
   export class ChangeOrderCtrl{
-      constructor(private $scope: IMainScope, private $http: ng.IHttpService){
+      constructor(private $scope: IMainScope, private $http: ng.IHttpService,private $location: ng.ILocationService) {
           $http.get("/api/products").then(
               function(response){
                   // TODO: change this
@@ -85,9 +85,9 @@ module tdmApp {
             name: $scope.name,
             id: $scope.id
         }, {headers: {'Content-Type':'application/json; charset=utf-8'}}).success(function(res){
-            
+             $location.path('/confirmation');
         }).error(function(){
-            
+            $location.path('/error');
         });
     }
     }
@@ -119,6 +119,10 @@ partyApp.config(['$routeProvider',
       }).
       when('/confirmation', {
         templateUrl: '../../views/confirmation.html',
+        controller: 'MainCtrl'       
+      }).
+      when('/error', {
+        templateUrl: '../../views/error.html',
         controller: 'MainCtrl'       
       }).
       otherwise({
