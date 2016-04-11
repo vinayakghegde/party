@@ -110,6 +110,9 @@ partyApp.config(['$routeProvider',
             redirectTo: '/order-now'
         });
     }]);
+partyApp.filter("formatstring", function () {
+    return function (input) { return input.split("_")[1]; };
+});
 partyApp.factory("authentication", ["$http", "$q", "$window", authentication]);
 function authentication($http, $q, $window) {
     var user;
