@@ -116,3 +116,23 @@ select .veg{
 select .non-veg{
     color: #ff0000;
 }
+
+.confirm{
+    background-color: #90ee90;
+    padding: 20px;
+    text-align: center;
+    /* color: black; */
+    font-weight: bold;
+}
+
+.green{
+    color:#008000;
+}
+
+.veg-class{
+    color: #008000;
+}
+
+.non-veg-class{
+    color: #ff0000;
+}

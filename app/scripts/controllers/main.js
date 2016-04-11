@@ -9,7 +9,7 @@ var tdmApp;
             this.$location = $location;
             $http.get("/api/products").then(function (response) {
                 $scope.myOrder = response.data;
-                if ($scope.myOrder) {
+                if ($scope.myOrder && $scope.myOrder.length) {
                     $location.path('/confirmation');
                 }
             });
@@ -21,7 +21,9 @@ var tdmApp;
                         name: $scope.name,
                         id: $scope.id
                     }, { headers: { 'Content-Type': 'application/json; charset=utf-8' } }).success(function (res) {
+                        $location.path('/confirmation');
                     }).error(function () {
+                        $location.path('/error');
                     });
                 }
             };
@@ -40,6 +42,10 @@ var tdmApp;
             $http.get("/api/products").then(function (response) {
                 $scope.order = response.data;
             });
+            $scope.checkVeg = function (order) {
+                var s = order.pizza.split("_")[0] || "";
+                return (s === "v");
+            };
         }
         return AllOrderCtrl;
     }());

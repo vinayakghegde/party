@@ -8,7 +8,7 @@
       </tr>
     </thead>
     <tbody>        
-      <tr ng-repeat="o in order">
+      <tr ng-repeat="o in order" ng-class="checkVeg(o) ? 'veg-class': 'non-veg-class'">
         <td>{{o.name}}</td>
         <td>{{o.pizza}}</td>
         <td>{{o.cold}}</td>

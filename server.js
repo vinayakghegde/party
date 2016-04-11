@@ -11,7 +11,7 @@ var mongoose = require('mongoose');
     
 // config files
 var db = {
-        url : 'mongodb://localhost/orders'
+        url : 'mongodb://localhost/latestorders'
     }   ;
 // set our port
 var port = process.env.PORT || 9000; 

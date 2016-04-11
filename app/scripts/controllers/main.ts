@@ -7,6 +7,7 @@ module tdmApp {
     onPlaceOrder: Function;
     onReset: Function;
     onChangeOrder: Function;
+    checkVeg: Function;
     pizza: string;
     cold: string;
     name: string;
@@ -22,7 +23,7 @@ module tdmApp {
         $http.get("/api/products").then(
               function(response){
                   $scope.myOrder = response.data;
-                  if($scope.myOrder){
+                  if($scope.myOrder && $scope.myOrder.length){
                       $location.path('/confirmation');
                   }
               }
@@ -39,9 +40,9 @@ module tdmApp {
             name: $scope.name,
             id: $scope.id
         }, {headers: {'Content-Type':'application/json; charset=utf-8'}}).success(function(res){
-            
+            $location.path('/confirmation');
         }).error(function(){
-            
+            $location.path('/error');
         });
     }
     }
@@ -63,7 +64,12 @@ module tdmApp {
                   $scope.order = response.data;
               }
           );
+            $scope.checkVeg = function(order){
+        var s = order.pizza.split("_")[0] || "";
+        return (s === "v");
+    }
       }
+      
   }
   
   export class ChangeOrderCtrl{
@@ -90,8 +96,7 @@ module tdmApp {
             $location.path('/error');
         });
     }
-    }
-      }
+    } }
   }
 }
 
