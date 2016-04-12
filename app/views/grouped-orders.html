@@ -1,0 +1,19 @@
+<table class="table table-striped form-container">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Pizza</th>
+        <th>Cold drink</th>
+        <th>status</th>
+      </tr>
+    </thead>
+    <tbody>        
+      <tr ng-repeat="o in order" ng-class="checkVeg(o) ? 'veg-class': 'non-veg-class'">
+        <td>{{o.name}}</td>
+        <td>{{o.pizza | formatstring}}</td>
+        <td>{{o.cold}}</td>
+        <td>{{o._id}}</td>
+      </tr>
+      
+    </tbody>
+  </table>

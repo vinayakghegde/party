@@ -15,6 +15,7 @@ module tdmApp {
     getOrders: Function;
     order: any;
     myOrder: any;
+    Isvisible: boolean;
   }
 
   export class MainCtrl {
@@ -22,6 +23,7 @@ module tdmApp {
     constructor (private $scope: IMainScope, private $http: ng.IHttpService, private $location: ng.ILocationService) {
         $http.get("/api/products").then(
               function(response){
+                  $scope.Isvisible = true;
                   $scope.myOrder = response.data;
                   if($scope.myOrder && $scope.myOrder.length){
                       $location.path('/confirmation');
@@ -61,9 +63,24 @@ module tdmApp {
       constructor(private $scope: IMainScope, private $http: ng.IHttpService){
            $http.get("/api/products").then(
               function(response){
-                  $scope.order = response.data;
+                  $scope.order = shuffle(response.data);
               }
           );
+            $scope.checkVeg = function(order){
+        var s = order.pizza.split("_")[0] || "";
+        return (s === "v");
+    }
+      }
+      
+  }
+  
+  export class GroupOrderCtrl{
+      constructor(private $scope: IMainScope, private $http: ng.IHttpService){
+           $http.get("/api/products").then(
+              function(response){
+                  $scope.order = response.data;
+                  $scope.order.sort();
+              });
             $scope.checkVeg = function(order){
         var s = order.pizza.split("_")[0] || "";
         return (s === "v");
@@ -76,9 +93,13 @@ module tdmApp {
       constructor(private $scope: IMainScope, private $http: ng.IHttpService,private $location: ng.ILocationService) {
           $http.get("/api/products").then(
               function(response){
-                  // TODO: change this
-                  $scope.pizza = response.data[0].pizza;
+                  $scope.myOrder = response.data;
+                  if(!($scope.myOrder && $scope.myOrder.length)){
+                      $location.path('/oreder-now');
+                  }else{
+                        $scope.pizza = response.data[0].pizza;
                    $scope.cold = response.data[0].cold;
+                  }
               }
           );
           
@@ -106,6 +127,8 @@ var partyApp = angular.module('tdmApp',["ngRoute"])
   partyApp.controller('allOrderCtrl', tdmApp.AllOrderCtrl);
   
   partyApp.controller('changeOrderCtrl', tdmApp.ChangeOrderCtrl);
+  
+  partyApp.controller('groupOrderCtrl', tdmApp.GroupOrderCtrl);
 
 partyApp.config(['$routeProvider',
   function($routeProvider) {
@@ -130,11 +153,35 @@ partyApp.config(['$routeProvider',
         templateUrl: '../../views/error.html',
         controller: 'MainCtrl'       
       }).
+       when('/grouped-orders', {
+        templateUrl: '../../views/grouped-orders.html',
+        controller: 'groupOrderCtrl'       
+      }).
       otherwise({
         redirectTo: '/order-now'
       });
   }]);
   
+  function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
+ 
   partyApp.filter("formatstring", function(){
       return function(input){ return input.split("_")[1];}
   });

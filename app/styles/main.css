@@ -136,3 +136,7 @@ select .non-veg{
 .non-veg-class{
     color: #ff0000;
 }
+
+table tr td{
+    text-shadow: 1px 0px 0px black;
+}
