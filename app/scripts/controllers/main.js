@@ -154,3 +154,6 @@ function shuffle(array) {
 partyApp.filter("formatstring", function () {
     return function (input) { return input.split("_")[1]; };
 });
+partyApp.filter("securityMessage", function () {
+    return function (input) { return input.split("_")[1]; }; // compare iis user and ordered user
+});
