@@ -21,6 +21,10 @@ module tdmApp {
   export class MainCtrl {
 
     constructor (private $scope: IMainScope, private $http: ng.IHttpService, private $location: ng.ILocationService) {
+       
+       // TODO: JSONP
+       // pass imgUrl $scope.ImgUrl = http://jdfgkdgk+firstName+lastName
+       
         $http.get("/api/products").then(
               function(response){
                   $scope.Isvisible = true;
@@ -40,7 +44,7 @@ module tdmApp {
             pizza: $scope.pizza,
             cold: $scope.cold,
             name: $scope.name,
-            id: $scope.id
+            id: $scope.id         
         }, {headers: {'Content-Type':'application/json; charset=utf-8'}}).success(function(res){
             $location.path('/confirmation');
         }).error(function(){

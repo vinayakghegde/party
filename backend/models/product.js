@@ -8,7 +8,8 @@ var productSchema = new mongoose.Schema({
    pizza: String,
    cold: String,
    name: String,
-   id: String
+   id: String,
+   imgUrl: String
 });
 
 // Return model

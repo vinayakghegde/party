@@ -1,20 +1,22 @@
 <table class="table table-striped form-container">
     <thead>
       <tr>
+        <th>Ordered By</th>
         <th>Name</th>
         <th>Pizza</th>
         <th>Cold drink</th>
-        <th>status</th>
-        <th>OrderedBy</th>
+        <!--<th>status</th>
+        <th>OrderedBy</th>-->
       </tr>
     </thead>
     <tbody>        
       <tr ng-repeat="o in order" ng-class="checkVeg(o) ? 'veg-class': 'non-veg-class'">
+        <td><img class="img-circle" src="{{o.imgUrl}}" style="height: 50px;width: 50px;"> <!-- my connection url --></td>
         <td>{{o.name}}</td>
         <td>{{o.pizza | formatstring}}</td>
         <td>{{o.cold}}</td>
-        <td>{{o._id}}</td>
-        <td>{{o.__v}} </td>
+        <!--<td>{{o._id}}</td>
+        <td>{{o.__v}} </td>-->
       </tr>
       
     </tbody>
