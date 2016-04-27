@@ -1,3 +1,45 @@
+<div class="row text-center">
+   <label>Pizza Order Summary</label>
+</div>
+
+<table class="table table-stripped form-container">
+    <thead>
+      <tr>
+        <th>Pizza</th>
+        <th>Quantity</th>
+      </tr>
+    </thead>
+    <tbody>        
+      <tr ng-repeat="(key, value) in counts" ng-class="checkVeg(key) ? 'veg-class': 'non-veg-class'">
+        <td>{{key | formatstring}}</td>
+        <td>{{value}}</td>
+      </tr>
+    </tbody>
+</table>
+
+<div class="row text-center">
+   <label>Cold drink Order Summary</label>
+</div>
+
+<table class="table table-stripped form-container">
+    <thead>
+      <tr>
+        <th>Cold drink</th>
+        <th>Quantity</th>
+      </tr>
+    </thead>
+    <tbody>        
+      <tr ng-repeat="(key, value) in counts1">
+        <td>{{key}}</td>
+        <td>{{value}}</td>
+      </tr>
+    </tbody>
+</table>
+
+<div class="row text-center">
+   <label>Individual Order Summary</label>
+</div>
+
 <table class="table table-striped form-container">
     <thead>
       <tr>

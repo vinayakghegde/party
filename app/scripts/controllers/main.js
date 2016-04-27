@@ -4,6 +4,8 @@ var tdmApp;
 (function (tdmApp) {
     var MainCtrl = (function () {
         function MainCtrl($scope, $http, $location) {
+            // TODO: JSONP
+            // pass imgUrl $scope.ImgUrl = http://jdfgkdgk+firstName+lastName
             this.$scope = $scope;
             this.$http = $http;
             this.$location = $location;
@@ -42,6 +44,24 @@ var tdmApp;
             this.$http = $http;
             $http.get("/api/products").then(function (response) {
                 $scope.order = shuffle(response.data);
+                var arr = [];
+                var arr1 = [];
+                for (var i = 0; i < $scope.order.length; i++) {
+                    arr[i] = response.data[i].pizza;
+                    arr1[i] = response.data[i].cold;
+                }
+                arr.sort();
+                arr1.sort();
+                var counts = {};
+                var counts1 = {};
+                for (var i = 0; i < arr.length; i++) {
+                    counts[arr[i]] = 1 + (counts[arr[i]] || 0);
+                }
+                for (var i = 0; i < arr1.length; i++) {
+                    counts1[arr1[i]] = 1 + (counts1[arr1[i]] || 0);
+                }
+                $scope.counts = counts;
+                $scope.counts1 = counts1;
             });
             $scope.checkVeg = function (order) {
                 var s = order.pizza.split("_")[0] || "";
@@ -84,7 +104,7 @@ var tdmApp;
             });
             $scope.onChangeOrder = function () {
                 if ($scope.pizza && $scope.cold) {
-                    $http.post("/api/products", {
+                    $http.put("/api/products", {
                         pizza: $scope.pizza,
                         cold: $scope.cold,
                         name: $scope.name,
